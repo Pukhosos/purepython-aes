@@ -1,0 +1,11 @@
+__pycache__
+build
+dist
+
+.hypothesis
+.mypy_cache
+.pytest_cache
+.venv
+
+src/*.egg-info
+src/purepy_aes/_version.py

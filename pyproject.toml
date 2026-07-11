@@ -1,0 +1,177 @@
+[project]
+name = "purepython-aes"
+dynamic = ["version"]
+description = "Pure-Python implementation of AES encryption algorithm."
+authors = [{ name = "Emelianov Artem", email = "penguin5726@proton.me" }]
+dependencies = []
+requires-python = ">=3.10"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE.txt"]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Security :: Cryptography",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/Pukhosos/purepython-aes"
+Repository = "https://github.com/Pukhosos/purepython-aes"
+Issues = "https://github.com/Pukhosos/purepython-aes/issues"
+
+[project.optional-dependencies]
+dev = [
+    "isort",
+    "black",
+    "flake8",
+    "flake8-bugbear",
+    "flake8-builtins",
+    "flake8-comprehensions",
+    "flake8-pyproject",
+    "flake8-quotes",
+    "flake8-simplify",
+    "pep8-naming",
+    "mypy",
+    "pre-commit",
+]
+test = [
+    "pytest>=9.0",
+    "pytest-env",
+    "pytest-randomly",
+    "pytest-xdist",
+    "hypothesis",
+]
+fuzz = ["hypofuzz"]
+build = ["build", "twine"]
+
+[build-system]
+requires = ["setuptools>=77.0", "setuptools-scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+purepython-aes = ["py.typed"]
+
+[tool.setuptools_scm]
+tag_regex = "^v(?P<version>\\d+\\.\\d+\\.\\d+)$"
+parentdir_prefix_version = "purepython-aes-"
+fallback_version = "0.0.0"
+version_file = "src/purepython-aes/_version.py"
+write_to_source = true
+
+[tool.isort]
+py_version = 310
+skip_gitignore = true
+line_length = 88
+multi_line_output = 3
+use_parentheses = true
+atomic = true
+lines_before_imports = 0
+combine_star = true
+include_trailing_comma = true
+from_first = true
+verbose = true
+force_alphabetical_sort_within_sections = true
+profile = "black"
+honor_noqa = true
+src_paths = ["src", "tests"]
+remove_redundant_aliases = true
+float_to_top = true
+only_modified = true
+star_first = true
+
+[tool.black]
+target-version = ["py310"]
+line-length = 88
+skip-string-normalization = true
+
+[tool.flake8]
+count = true
+max-line-length = 88
+statistics = true
+max-complexity = 16
+exclude = [
+    "__pycache__",
+    ".git",
+    ".hypothesis",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".venv",
+    "build",
+    "dist",
+    "src/purepython-aes/_version.py",
+]
+extend-select = ["A", "B", "B9", "C4", "N", "Q", "SIM"]
+extend-ignore = ["E203", "W503"]
+inline-quotes = "single"
+multiline-quotes = "double"
+docstring-quotes = "double"
+avoid-escape = false
+check-inside-f-strings = true
+
+[tool.mypy]
+python_version = "3.10"
+files = ["src", "tests"]
+mypy_path = ["src", "tests"]
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+strict_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_return_any = true
+warn_unreachable = true
+allow_untyped_globals = false
+allow_redefinition = false
+extra_checks = true
+implicit_reexport = true
+strict_equality = true
+strict_bytes = true
+show_error_context = true
+show_column_numbers = true
+show_error_code_links = true
+pretty = true
+error_summary = true
+warn_incomplete_stub = true
+
+[tool.pytest]
+minversion = "9.0"
+env = ["IS_PYTEST_RUNNING=1"]
+addopts = [
+    "-ra",
+    "-q",
+    "-l",
+    "--import-mode=importlib",
+    "--doctest-modules",
+    "--doctest-glob=*.md",
+]
+testpaths = ["."]
+norecursedirs = [
+    "__pycache__",
+    ".git",
+    ".hypothesis",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".venv",
+    "build",
+    "dist",
+]
+strict = true
+truncation_limit_chars = 0
+truncation_limit_lines = 0
