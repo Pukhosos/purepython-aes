@@ -177,5 +177,5 @@ norecursedirs = [
     "dist",
 ]
 strict = true
-truncation_limit_chars = 0
-truncation_limit_lines = 0
+truncation_limit_chars = "0"
+truncation_limit_lines = "0"
