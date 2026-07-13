@@ -1,6 +1,6 @@
 from typing import Final
 
-from hypothesis.strategies import binary, builds, SearchStrategy
+from hypothesis.strategies import binary, builds, integers, SearchStrategy
 
 from purepython_aes.aes.algorithms import Aes128, Aes192, Aes256
 from purepython_aes.const import (
@@ -9,6 +9,8 @@ from purepython_aes.const import (
     AES_256_KEY_SIZE,
     AES_BLOCK_SIZE,
 )
+
+byte_values: Final[SearchStrategy[int]] = integers(min_value=0x00, max_value=0xFF)
 
 aes128key: Final[SearchStrategy[bytes]] = binary(
     min_size=AES_128_KEY_SIZE,

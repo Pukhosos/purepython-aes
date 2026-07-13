@@ -1,12 +1,12 @@
 from re import escape
 
-from hypothesis import given, HealthCheck, settings
+from hypothesis import assume, given, HealthCheck, settings
 from hypothesis.strategies import binary
 from pytest import mark, raises
 
 from purepython_aes.aes.padding import ZeroPadding
 from purepython_aes.const import AES_BLOCK_SIZE
-from tests.unit.aes.padding.strategies import byte_values
+from tests.unit.aes.strategies import byte_values
 
 
 @mark.quick
@@ -59,6 +59,7 @@ class TestZeroPadding:
         prefix: bytes,
         final_byte: int,
     ) -> None:
+        assume(final_byte != 0x00)
         data: bytes = prefix + bytes([final_byte])
         assert zero.unpad(zero.pad(data)) == data
 
