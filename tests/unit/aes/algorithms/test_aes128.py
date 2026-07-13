@@ -3,8 +3,7 @@ from pytest import mark
 
 from purepython_aes.aes.algorithms import Aes128
 from purepython_aes.const import AES_128_KEY_SIZE, AES_128_ROUND_COUNT
-from tests.unit.aes.algorithms.strategies import aes128
-from tests.unit.aes.strategies import aes_blocks
+from tests.unit.aes.strategies import aes128, aes_blocks
 
 
 @mark.quick
