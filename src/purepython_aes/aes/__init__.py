@@ -1,5 +1,6 @@
 from purepython_aes.aes.algorithms import Aes128, Aes192, Aes256
 from purepython_aes.aes.interface import Aes
+from purepython_aes.aes.modes import AesMode, BlockCipherMode, EcbMode
 from purepython_aes.aes.padding import (
     AnsiX923Padding,
     BasePadding,
@@ -15,6 +16,9 @@ __all__: list[str] = [
     'Aes192',
     'Aes256',
     'Aes',
+    'AesMode',
+    'BlockCipherMode',
+    'EcbMode',
     'AnsiX923Padding',
     'BasePadding',
     'Iso7816Padding',
