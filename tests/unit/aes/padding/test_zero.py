@@ -4,7 +4,7 @@ from hypothesis import assume, given, HealthCheck, settings
 from hypothesis.strategies import binary
 from pytest import mark, raises
 
-from purepython_aes.aes.padding import ZeroPadding
+from purepython_aes import ZeroPadding
 from purepython_aes.const import AES_BLOCK_SIZE
 from tests.unit.aes.strategies import byte_values
 

@@ -3,7 +3,7 @@ from re import escape
 from hypothesis import given, HealthCheck, settings
 from pytest import mark, raises
 
-from purepython_aes.aes.padding import NoPadding
+from purepython_aes import NoPadding
 from purepython_aes.const import AES_BLOCK_SIZE
 from tests.unit.aes.padding.strategies import aligned_messages
 

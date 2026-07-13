@@ -1,6 +1,6 @@
 from pytest import fixture
 
-from purepython_aes.aes.padding import (
+from purepython_aes import (
     AnsiX923Padding,
     Iso7816Padding,
     Iso10126Padding,

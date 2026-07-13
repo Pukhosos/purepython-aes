@@ -4,7 +4,7 @@ from hypothesis import given, HealthCheck, settings
 from hypothesis.strategies import binary
 from pytest import mark, MonkeyPatch, raises
 
-from purepython_aes.aes.padding import Iso10126Padding
+from purepython_aes import Iso10126Padding
 from purepython_aes.const import AES_BLOCK_SIZE
 
 

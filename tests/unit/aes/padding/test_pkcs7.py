@@ -2,7 +2,7 @@ from hypothesis import given, HealthCheck, settings
 from hypothesis.strategies import binary
 from pytest import mark, raises
 
-from purepython_aes.aes.padding import Pkcs7Padding
+from purepython_aes import Pkcs7Padding
 from purepython_aes.const import AES_BLOCK_SIZE
 
 

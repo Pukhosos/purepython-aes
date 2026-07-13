@@ -2,7 +2,7 @@ from typing import Final
 
 from hypothesis.strategies import binary, builds, integers, SearchStrategy
 
-from purepython_aes.aes.algorithms import Aes128, Aes192, Aes256
+from purepython_aes import Aes128, Aes192, Aes256
 from purepython_aes.const import (
     AES_128_KEY_SIZE,
     AES_192_KEY_SIZE,

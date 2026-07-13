@@ -1,7 +1,7 @@
 from hypothesis import given
 from pytest import mark
 
-from purepython_aes.aes.algorithms import Aes192
+from purepython_aes import Aes192
 from purepython_aes.const import AES_192_KEY_SIZE, AES_192_ROUND_COUNT
 from tests.unit.aes.strategies import aes192, aes_blocks
 
