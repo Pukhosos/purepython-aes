@@ -14,7 +14,7 @@ class AesMode(ABC):
     """Either AES-128, AES-192, or AES-256."""
 
 
-@dataclass(slots=True)
+@dataclass
 class CipherMode(AesMode):
     """Base class for all AES Cipher modes of operation."""
 
