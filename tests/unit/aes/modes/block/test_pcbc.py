@@ -50,8 +50,8 @@ class TestPcbcMode:
         key: bytes,
         data: bytes,
     ) -> None:
-        ecb: PcbcMode = PcbcMode(aes(key[:aes.__key_size__]), padding())  # fmt: skip
-        assert ecb.decrypt(ecb.encrypt(data)) == data
+        pcbc: PcbcMode = PcbcMode(aes(key[:aes.__key_size__]), padding())  # fmt: skip
+        assert pcbc.decrypt(pcbc.encrypt(data)) == data
 
     @staticmethod
     @mark.parametrize(['aes'], [[Aes128], [Aes192], [Aes256]])
@@ -62,11 +62,11 @@ class TestPcbcMode:
         data: bytes,
     ) -> None:
         assume(not data.endswith(bytes(1)))
-        ecb: PcbcMode = PcbcMode(
+        pcbc: PcbcMode = PcbcMode(
             algorithm=aes(key[:aes.__key_size__]),  # fmt: skip
             padding=ZeroPadding(),
         )
-        assert ecb.decrypt(ecb.encrypt(data)) == data
+        assert pcbc.decrypt(pcbc.encrypt(data)) == data
 
     @staticmethod
     @mark.parametrize(['aes'], [[Aes128], [Aes192], [Aes256]])
@@ -76,5 +76,5 @@ class TestPcbcMode:
         key: bytes,
         data: bytes,
     ) -> None:
-        ecb: PcbcMode = PcbcMode(aes(key[:aes.__key_size__]), NoPadding())  # fmt: skip
-        assert ecb.decrypt(ecb.encrypt(data)) == data
+        pcbc: PcbcMode = PcbcMode(aes(key[:aes.__key_size__]), NoPadding())  # fmt: skip
+        assert pcbc.decrypt(pcbc.encrypt(data)) == data

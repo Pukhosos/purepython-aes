@@ -44,5 +44,5 @@ class TestCfbMode:
         key: bytes,
         data: bytes,
     ) -> None:
-        ecb: CfbMode = CfbMode(aes(key[:aes.__key_size__]), segment_size)  # fmt: skip
-        assert ecb.decrypt(ecb.encrypt(data)) == data
+        cfb: CfbMode = CfbMode(aes(key[:aes.__key_size__]), segment_size)  # fmt: skip
+        assert cfb.decrypt(cfb.encrypt(data)) == data
