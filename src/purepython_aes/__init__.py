@@ -14,6 +14,9 @@ from purepython_aes.aes import (
     NoPadding,
     PcbcMode,
     Pkcs7Padding,
+    ReferenceAes128,
+    ReferenceAes192,
+    ReferenceAes256,
     ZeroPadding,
 )
 
@@ -33,5 +36,8 @@ __all__: list[str] = [
     'NoPadding',
     'PcbcMode',
     'Pkcs7Padding',
+    'ReferenceAes128',
+    'ReferenceAes192',
+    'ReferenceAes256',
     'ZeroPadding',
 ]

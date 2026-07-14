@@ -16,6 +16,9 @@ from purepython_aes import (
     Iso10126Padding,
     NoPadding,
     Pkcs7Padding,
+    ReferenceAes128,
+    ReferenceAes192,
+    ReferenceAes256,
     ZeroPadding,
 )
 from tests.unit.aes.strategies import aes256key, aes_blocks
@@ -28,7 +31,14 @@ class TestCbcMode:
         ['aes', 'padding'],
         tuple(
             product(
-                [Aes128, Aes192, Aes256],
+                [
+                    Aes128,
+                    Aes192,
+                    Aes256,
+                    ReferenceAes128,
+                    ReferenceAes192,
+                    ReferenceAes256,
+                ],
                 [AnsiX923Padding, Iso10126Padding, Iso7816Padding, Pkcs7Padding],
             ),
         ),

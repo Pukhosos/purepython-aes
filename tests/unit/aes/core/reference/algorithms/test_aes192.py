@@ -3,7 +3,8 @@ from pytest import mark
 
 from purepython_aes import Aes192
 from purepython_aes.const import AES_192_KEY_SIZE, AES_192_ROUND_COUNT
-from tests.unit.aes.strategies import aes192, aes_blocks
+from tests.unit.aes.core.reference.algorithms.strategies import reference_aes192
+from tests.unit.aes.strategies import aes_blocks
 
 
 @mark.quick
@@ -43,7 +44,7 @@ class TestAes192:
         )
 
     @staticmethod
-    @given(aes=aes192, block=aes_blocks)
+    @given(aes=reference_aes192, block=aes_blocks)
     def test_aes192_decrypt_block_inverts_encrypt_block(
         aes: Aes192,
         block: bytes,
@@ -51,7 +52,7 @@ class TestAes192:
         assert aes.decrypt_block(aes.encrypt_block(block)) == block
 
     @staticmethod
-    @given(aes=aes192, block=aes_blocks)
+    @given(aes=reference_aes192, block=aes_blocks)
     def test_aes192_encrypt_block_inverts_decrypt_block(
         aes: Aes192,
         block: bytes,

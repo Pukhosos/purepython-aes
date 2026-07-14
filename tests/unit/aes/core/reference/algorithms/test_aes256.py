@@ -3,7 +3,8 @@ from pytest import mark
 
 from purepython_aes import Aes256
 from purepython_aes.const import AES_256_KEY_SIZE, AES_256_ROUND_COUNT
-from tests.unit.aes.strategies import aes256, aes_blocks
+from tests.unit.aes.core.reference.algorithms.strategies import reference_aes256
+from tests.unit.aes.strategies import aes_blocks
 
 
 @mark.quick
@@ -47,7 +48,7 @@ class TestAes256:
         )
 
     @staticmethod
-    @given(aes=aes256, block=aes_blocks)
+    @given(aes=reference_aes256, block=aes_blocks)
     def test_aes256_decrypt_block_inverts_encrypt_block(
         aes: Aes256,
         block: bytes,
@@ -55,7 +56,7 @@ class TestAes256:
         assert aes.decrypt_block(aes.encrypt_block(block)) == block
 
     @staticmethod
-    @given(aes=aes256, block=aes_blocks)
+    @given(aes=reference_aes256, block=aes_blocks)
     def test_aes256_encrypt_block_inverts_decrypt_block(
         aes: Aes256,
         block: bytes,

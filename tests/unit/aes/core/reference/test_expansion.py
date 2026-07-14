@@ -2,7 +2,7 @@ from typing import Final
 
 from pytest import mark
 
-from purepython_aes.aes.core.expansion import expand_key
+from purepython_aes.aes.core.reference.expansion import expand_key
 from purepython_aes.const import (
     AES_128_KEY_SIZE,
     AES_128_ROUND_COUNT,

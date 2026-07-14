@@ -3,7 +3,7 @@ from itertools import product
 from hypothesis import given
 from pytest import mark
 
-from purepython_aes.aes.core.operations import (
+from purepython_aes.aes.core.reference.operations import (
     galois256_multiply,
     inverse_mix_column,
     mix_column,

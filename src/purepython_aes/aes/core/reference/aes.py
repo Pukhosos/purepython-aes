@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 
-from purepython_aes.aes.core.expansion import expand_key
-from purepython_aes.aes.core.state import AesState
-from purepython_aes.aes.interface import Aes
+from purepython_aes.aes.core.interface import Aes
+from purepython_aes.aes.core.reference.expansion import expand_key
+from purepython_aes.aes.core.reference.state import AesState
 from purepython_aes.const import AES_BLOCK_SIZE
 
 

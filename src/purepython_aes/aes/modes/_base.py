@@ -3,7 +3,7 @@ from __future__ import annotations
 from abc import ABC
 from dataclasses import dataclass
 
-from purepython_aes.aes.interface import Aes
+from purepython_aes.aes.core.interface import Aes
 
 
 @dataclass

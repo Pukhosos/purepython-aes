@@ -3,7 +3,7 @@ from re import escape
 from hypothesis import given
 from pytest import mark, raises
 
-from purepython_aes.aes.core.state import AesState
+from purepython_aes.aes.core.reference.state import AesState
 from purepython_aes.const import AES_BLOCK_SIZE, INVERSE_SBOX, SBOX
 from tests.unit.aes.strategies import aes_blocks
 

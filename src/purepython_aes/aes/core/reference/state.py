@@ -3,7 +3,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import ClassVar, final
 
-from purepython_aes.aes.core.operations import inverse_mix_column, mix_column
+from purepython_aes.aes.core.reference.operations import inverse_mix_column, mix_column
 from purepython_aes.const import AES_BLOCK_SIZE, INVERSE_SBOX, SBOX
 
 
