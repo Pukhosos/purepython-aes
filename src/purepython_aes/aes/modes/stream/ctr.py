@@ -39,7 +39,7 @@ class CtrMode(StreamCipherMode):
         for block_index in range(block_count):
             block_start: int = block_index * AES_BLOCK_SIZE
             data_block: bytes = data[block_start : (block_start + AES_BLOCK_SIZE)]
-            counter: int = initial_counter + block_index
+            counter: int = (initial_counter + block_index) % 2 ** (AES_BLOCK_SIZE * 8)
             counter_block: bytes = counter.to_bytes(AES_BLOCK_SIZE, byteorder='big')
             keystream_block: bytes = self.algorithm.encrypt_block(counter_block)
             transformed_block: bytes = xor(
