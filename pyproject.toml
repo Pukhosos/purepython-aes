@@ -49,6 +49,7 @@ test = [
     "pytest-randomly",
     "pytest-xdist",
     "hypothesis",
+    "pyaes==1.6.1",
 ]
 fuzz = ["purepython-aes[test]", "hypofuzz"]
 build = ["build", "twine"]
@@ -165,6 +166,7 @@ addopts = [
 markers = [
     "quick: run on every commit",
     "slow: only run at new release",
+    "reference_pyaes: run tests against pyaes implementation",
 ]
 testpaths = ["."]
 norecursedirs = [

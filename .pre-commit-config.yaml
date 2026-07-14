@@ -46,3 +46,10 @@ repos:
         language: system
         pass_filenames: false
         always_run: true
+
+      - id: pytest-reference
+        name: pytest-reference
+        entry: python -m pytest tests/reference -n 8
+        language: system
+        pass_filenames: false
+        always_run: true
