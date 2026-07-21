@@ -2,6 +2,10 @@
 
 Pure-Python implementation of AES encryption algorithm.
 
+## Prerequisites
+
+`purepython-aes` requires [Python 3.10](https://www.python.org/downloads/release/python-3100/) or newer.
+
 ## Installation
 
 This package is available on PyPI.
