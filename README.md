@@ -18,6 +18,28 @@ pip install purepython-aes
 
 This package provides four extras: `dev`, `test`, `fuzz`, and `build`. These are intended solely for development and do not add any runtime functionality.
 
+## Quick start
+
+`purepython-aes` supports AES-128, AES-192, and AES-256, with ECB, CBC, PCBC, CFB, OFB, and CTR modes. Available [padding schemes](https://en.wikipedia.org/wiki/Padding_%28cryptography%29) are [ANSI X9.23](https://en.wikipedia.org/wiki/Padding_%28cryptography%29#ANSI_X9.23), [ISO/IEC 7816-4](https://en.wikipedia.org/wiki/Padding_%28cryptography%29#ISO/IEC_7816-4), [ISO 10126](https://en.wikipedia.org/wiki/Padding_%28cryptography%29#ISO_10126), [PKCS#7](https://en.wikipedia.org/wiki/Padding_%28cryptography%29#PKCS#5_and_PKCS#7), [zero padding](https://en.wikipedia.org/wiki/Padding_%28cryptography%29#Zero_padding), and no padding *(requires data to be 16-byte-aligned)*.
+
+```pycon
+>>> from purepython_aes import Aes128, EcbMode, Pkcs7Padding
+>>>
+>>> message: str = 'Hello, World!'
+>>> key: bytes = bytes.fromhex('8d39342d15f50bcaa47cce2ec306fc11')
+>>> aes: EcbMode = EcbMode(algorithm=Aes128(key), padding=Pkcs7Padding())
+>>>
+>>>
+>>> ciphertext: bytes = aes.encrypt(message.encode('utf-8'))
+>>> ciphertext.hex()
+'aba1a8622feb8ae23a4791e24fa08fc1'
+>>> aes.decrypt(ciphertext).decode('utf-8')
+'Hello, World!'
+>>>
+```
+
+**Security note:** ECB mode is deterministic and does not conceal repeated plaintext patterns. It is included for compatibility and testing, but should generally not be used to encrypt sensitive data.
+
 ## Development
 
 ### Setting up the development environment
@@ -88,6 +110,7 @@ The following commands assume the virtual environment is activated
 
     ```sh
     pre-commit run pytest-discovery && \
+        pre-commit run pytest-doctest && \
         pre-commit run pytest-markguard && \
         pre-commit run pytest-unit && \
         pre-commit run pytest-reference
