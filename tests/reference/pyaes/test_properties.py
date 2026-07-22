@@ -91,7 +91,7 @@ class TestAgainstPyaes:
         key_material: bytes,
         plaintext: bytes,
     ) -> None:
-        key: bytes = key_material[: len(algorithm_case.key)]
+        key: bytes = key_material[:len(algorithm_case.key)]  # fmt: skip
         ecb: EcbMode = EcbMode(algorithm_case.algorithm(key), Pkcs7Padding())
         reference_ciphertext: bytes = encrypt_ecb_with_pkcs7(key, plaintext)
         assert ecb.encrypt(plaintext) == reference_ciphertext
@@ -149,7 +149,7 @@ class TestAgainstPyaes:
         key_material: bytes,
         plaintext: bytes,
     ) -> None:
-        key: bytes = key_material[: len(algorithm_case.key)]
+        key: bytes = key_material[:len(algorithm_case.key)]  # fmt: skip
         cbc: CbcMode = CbcMode(algorithm_case.algorithm(key), Pkcs7Padding())
         purepython_ciphertext: bytes = cbc.encrypt(plaintext)
         generated_initialization_value: bytes = purepython_ciphertext[:AES_BLOCK_SIZE]

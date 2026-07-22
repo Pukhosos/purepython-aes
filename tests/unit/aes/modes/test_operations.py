@@ -110,7 +110,7 @@ def test_split_into_blocks_uses_original_order() -> None:
     blocks = split_into_blocks(data)
     assert blocks[0] == data[:AES_BLOCK_SIZE]
     assert blocks[1] == data[AES_BLOCK_SIZE : (2 * AES_BLOCK_SIZE)]
-    assert blocks[2] == data[(2 * AES_BLOCK_SIZE) :]
+    assert blocks[2] == data[(2 * AES_BLOCK_SIZE):]  # fmt: skip
 
 
 @mark.quick

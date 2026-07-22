@@ -44,7 +44,7 @@ class CtrMode(StreamCipherMode):
             keystream_block: bytes = self.algorithm.encrypt_block(counter_block)
             transformed_block: bytes = xor(
                 data_block,
-                keystream_block[: len(data_block)],
+                keystream_block[:len(data_block)],  # fmt: skip
             )
             transformed_data.extend(transformed_block)
         return bytes(transformed_data)

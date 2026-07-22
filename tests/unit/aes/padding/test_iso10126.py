@@ -116,5 +116,5 @@ class TestIso10126Padding:
         padding_size: int = AES_BLOCK_SIZE - len(data) % AES_BLOCK_SIZE
         assert len(padded_data) % AES_BLOCK_SIZE == 0
         assert len(padded_data) == len(data) + padding_size
-        assert padded_data[: len(data)] == data
+        assert padded_data[:len(data)] == data  # fmt: skip
         assert padded_data[-1] == padding_size

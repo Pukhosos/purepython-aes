@@ -74,5 +74,5 @@ class TestZeroPadding:
         padded_data: bytes = zero.pad(data)
         assert len(padded_data) % AES_BLOCK_SIZE == 0
         assert len(padded_data) == len(data) + padding_size
-        assert padded_data[: len(data)] == data
-        assert padded_data[len(data) :] == bytes(padding_size)
+        assert padded_data[:len(data)] == data  # fmt: skip
+        assert padded_data[len(data):] == bytes(padding_size)  # fmt: skip
