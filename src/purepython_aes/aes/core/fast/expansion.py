@@ -1,5 +1,4 @@
-from struct import unpack
-from typing import Final
+from typing import Final, Literal, overload, TYPE_CHECKING
 
 from purepython_aes.const import (
     AES_128_ROUND_COUNT,
@@ -8,6 +7,33 @@ from purepython_aes.const import (
     SBOX,
 )
 from purepython_aes.types import IntLookupTable256, RoundKey, RoundKeys
+
+if TYPE_CHECKING:
+    from _typeshed import ReadableBuffer
+
+    @overload  # type: ignore[no-overload-impl]
+    def unpack(
+        format: Literal['>4I'],  # noqa: A002
+        buffer: ReadableBuffer,
+    ) -> tuple[int, int, int, int]:
+        raise NotImplementedError
+
+    @overload
+    def unpack(
+        format: Literal['>6I'],  # noqa: A002
+        buffer: ReadableBuffer,
+    ) -> tuple[int, int, int, int, int, int]:
+        raise NotImplementedError
+
+    @overload
+    def unpack(
+        format: Literal['>8I'],  # noqa: A002
+        buffer: ReadableBuffer,
+    ) -> tuple[int, int, int, int, int, int, int, int]:
+        raise NotImplementedError
+
+else:
+    from struct import unpack
 
 AES_192_EXPANSION_COUNT: Final[int] = 8
 
@@ -21,8 +47,8 @@ def expand_aes128_key(key: bytes) -> tuple[RoundKeys, RoundKey]:
 
     sbox: IntLookupTable256 = SBOX
     round_constant_words: tuple[int, ...] = ROUND_CONSTANT_WORDS
-    initial_words: tuple[int, ...] = unpack('>4I', key)
-    round_keys: list[RoundKey] = [initial_words]  # type: ignore[list-item]
+    initial_words: RoundKey = unpack('>4I', key)
+    round_keys: list[RoundKey] = [initial_words]
     word_0, word_1, word_2, word_3 = initial_words
     for round_index in range(1, AES_128_ROUND_COUNT):
         transformed_word: int = (
