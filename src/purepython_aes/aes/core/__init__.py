@@ -1,10 +1,10 @@
 from purepython_aes.aes.core.fast import Aes128, Aes192, Aes256, FastAesCore
 from purepython_aes.aes.core.interface import Aes
 from purepython_aes.aes.core.reference import (
-    AesCore,
     ReferenceAes128,
     ReferenceAes192,
     ReferenceAes256,
+    ReferenceAesCore,
 )
 
 __all__: list[str] = [
@@ -13,7 +13,7 @@ __all__: list[str] = [
     'Aes192',
     'Aes256',
     'Aes',
-    'AesCore',
+    'ReferenceAesCore',
     'ReferenceAes128',
     'ReferenceAes192',
     'ReferenceAes256',

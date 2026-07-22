@@ -7,7 +7,7 @@ from purepython_aes.const import AES_BLOCK_SIZE
 
 
 @dataclass(init=False, slots=True)
-class AesCore(Aes):
+class ReferenceAesCore(Aes):
     """Implement `encrypt_block` and `decrypt_block` methods."""
 
     __round_keys: tuple[bytes, ...]
