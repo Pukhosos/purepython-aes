@@ -1,10 +1,15 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import ClassVar, final
+from typing import ClassVar, final, Final
 
 from purepython_aes.aes.core.reference.operations import inverse_mix_column, mix_column
 from purepython_aes.const import AES_BLOCK_SIZE, INVERSE_SBOX, SBOX
+
+COLUMN_0: Final[slice] = slice(0, 4)
+COLUMN_1: Final[slice] = slice(4, 8)
+COLUMN_2: Final[slice] = slice(8, 12)
+COLUMN_3: Final[slice] = slice(12, 16)
 
 
 @final
@@ -107,98 +112,18 @@ class AesState:
     def mix_columns(self) -> None:
         """Apply the AES `MixColumns` transformation."""
 
-        (
-            self.__b[0],
-            self.__b[1],
-            self.__b[2],
-            self.__b[3],
-        ) = mix_column(
-            self.__b[0],
-            self.__b[1],
-            self.__b[2],
-            self.__b[3],
-        )
-        (
-            self.__b[4],
-            self.__b[5],
-            self.__b[6],
-            self.__b[7],
-        ) = mix_column(
-            self.__b[4],
-            self.__b[5],
-            self.__b[6],
-            self.__b[7],
-        )
-        (
-            self.__b[8],
-            self.__b[9],
-            self.__b[10],
-            self.__b[11],
-        ) = mix_column(
-            self.__b[8],
-            self.__b[9],
-            self.__b[10],
-            self.__b[11],
-        )
-        (
-            self.__b[12],
-            self.__b[13],
-            self.__b[14],
-            self.__b[15],
-        ) = mix_column(
-            self.__b[12],
-            self.__b[13],
-            self.__b[14],
-            self.__b[15],
-        )
+        self.__b[COLUMN_0] = mix_column(*self.__b[COLUMN_0])
+        self.__b[COLUMN_1] = mix_column(*self.__b[COLUMN_1])
+        self.__b[COLUMN_2] = mix_column(*self.__b[COLUMN_2])
+        self.__b[COLUMN_3] = mix_column(*self.__b[COLUMN_3])
 
     def inverse_mix_columns(self) -> None:
         """Apply the AES `InvMixColumns` transformation."""
 
-        (
-            self.__b[0],
-            self.__b[1],
-            self.__b[2],
-            self.__b[3],
-        ) = inverse_mix_column(
-            self.__b[0],
-            self.__b[1],
-            self.__b[2],
-            self.__b[3],
-        )
-        (
-            self.__b[4],
-            self.__b[5],
-            self.__b[6],
-            self.__b[7],
-        ) = inverse_mix_column(
-            self.__b[4],
-            self.__b[5],
-            self.__b[6],
-            self.__b[7],
-        )
-        (
-            self.__b[8],
-            self.__b[9],
-            self.__b[10],
-            self.__b[11],
-        ) = inverse_mix_column(
-            self.__b[8],
-            self.__b[9],
-            self.__b[10],
-            self.__b[11],
-        )
-        (
-            self.__b[12],
-            self.__b[13],
-            self.__b[14],
-            self.__b[15],
-        ) = inverse_mix_column(
-            self.__b[12],
-            self.__b[13],
-            self.__b[14],
-            self.__b[15],
-        )
+        self.__b[COLUMN_0] = inverse_mix_column(*self.__b[COLUMN_0])
+        self.__b[COLUMN_1] = inverse_mix_column(*self.__b[COLUMN_1])
+        self.__b[COLUMN_2] = inverse_mix_column(*self.__b[COLUMN_2])
+        self.__b[COLUMN_3] = inverse_mix_column(*self.__b[COLUMN_3])
 
     def __init__(self, __constructor_sentinel: object, /, values: list[int]) -> None:
         if __constructor_sentinel is not AesState.__constructor_key:
